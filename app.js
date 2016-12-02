@@ -21,20 +21,25 @@ var config = {
   
 Firebase.initializeApp(config);
 
+// App & Body-Parser setup.
+var app = express();
+
+// Routing
 var users = require('./routes/users');
 var routes = require('./routes/index');
 var games = require('./routes/games');
 var genres = require('./routes/genres');
 
-
-// App & Body-Parser setup.
-var app = express();
+app.use('/', routes);
+app.use('/users', users);
+app.use('/games', games);
+app.use('/genres', genres);
 
 // Templating engine.
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// logger
+// Logger setup.
 app.use(logger('dev'));
 
 // Body-parser
@@ -44,7 +49,6 @@ app.use(cookieParser());
 
 // Directory setup.
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 // Express-validation setup.
 app.use(expressValidator({
@@ -64,14 +68,14 @@ app.use(expressValidator({
   }
 }));
 
-// Express-session setup..
+// Express-session setup
 app.use(session({
     secret: 'secret',
-    saveUnitialized: true,
-    resave: true
+    resave: true,
+    saveUninitialized: true
 }));
 
-// Connect-Flash setup.
+// Connect-flash setup.
 app.use(flash());
 app.use(function(req, res, next){
     res.locals.success_message = req.flash("success_message");
@@ -80,15 +84,8 @@ app.use(function(req, res, next){
     next();
 });
 
-// Routing.
-
-app.use('/', routes);
-app.use('/users', users);
-app.use('/games', games);
-app.use('/genres', genres);
-
 // Set port and run server.
-app.set('port', 3000);
+app.set('port', configurationFile.port_number);
 app.listen(app.get('port'), function(){
     console.log("Server up and running on port: " + app.get('port'));
 });
