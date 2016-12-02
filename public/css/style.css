@@ -1,0 +1,10 @@
+@media (min-width: 768px) {
+  .navbar-nav > li > a {
+    height      : 54px;
+    line-height : 27px; /* align the line center vertically */
+  }
+}
+
+h3{
+  margin-top: 0px;
+}
