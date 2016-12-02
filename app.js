@@ -24,17 +24,6 @@ Firebase.initializeApp(config);
 // App & Body-Parser setup.
 var app = express();
 
-// Routing
-var users = require('./routes/users');
-var routes = require('./routes/index');
-var games = require('./routes/games');
-var genres = require('./routes/genres');
-
-app.use('/', routes);
-app.use('/users', users);
-app.use('/games', games);
-app.use('/genres', genres);
-
 // Templating engine.
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -46,6 +35,34 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Express-session setup
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+
+// Connect-flash setup.
+app.use(flash());
+app.use(function(req, res, next){
+    res.locals.success_msg = req.flash("success_msg");
+    res.locals.error_msg = req.flash("error_msg");
+    res.locals.error_message   = req.flash("error_message");
+    next();
+});
+
+
+// Routing
+var users = require('./routes/users');
+var routes = require('./routes/index');
+var games = require('./routes/games');
+var genres = require('./routes/genres');
+
+app.use('/', routes);
+app.use('/users', users);
+app.use('/games', games);
+app.use('/genres', genres);
 
 // Directory setup.
 app.use(express.static(path.join(__dirname, 'public')));
@@ -68,21 +85,6 @@ app.use(expressValidator({
   }
 }));
 
-// Express-session setup
-app.use(session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
-}));
-
-// Connect-flash setup.
-app.use(flash());
-app.use(function(req, res, next){
-    res.locals.success_message = req.flash("success_message");
-    res.locals.failure_message = req.flash("failure_message");
-    res.locals.error_message   = req.flash("error_message");
-    next();
-});
 
 // Set port and run server.
 app.set('port', configurationFile.port_number);
