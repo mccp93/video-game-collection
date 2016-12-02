@@ -1,2 +1,10 @@
 # Dependency directories
 node_modules
+
+# Config information
+config.json
+
+# JS/CSS libs.
+bootstrap.js 
+jquery.js 
+style.css
