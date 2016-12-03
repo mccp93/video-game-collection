@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-const Firebase              = require('firebase');
+const express = require('express');
+const router = express.Router();
+const Firebase = require('firebase');
 
-// Home Page
+// GET - Home Page
 router.get('/', function(req, res, next) {
   	res.render('genres/index');
 });
