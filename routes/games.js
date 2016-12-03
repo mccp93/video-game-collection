@@ -51,7 +51,7 @@ router.post('/add', upload.single('cover'), function (req, res, next) {
 
 	var gameReference = Firebase.database().ref('games');
 	
-	gameReference.set(gameObj);
+	gameReference.push().set(gameObj);
 
 	req.flash("success_msg", "Game entry has been saved.");
 	res.redirect('/games');
