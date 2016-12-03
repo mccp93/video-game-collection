@@ -6,5 +6,49 @@
 }
 
 h3{
+  padding: 0;
+  padding-bottom: 2px;
+  margin: 0;
+}
+
+.hr-pad{
+  margin-top: 10px;
+  margin-bottom: 14px;
+}
+
+.game-cover{
+  height: 292px;
+  width: 237px;
+}
+
+h2{
   margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.game-header{
+  margin-bottom: 5px;
+  margin-top: 0px;
+}
+
+.game-developer{
+  font-size: 12px;
+}
+
+.rating{
+  float: right;
+}
+
+.game-name{
+  display: inline-block;
+}
+
+.game-developer{
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.game-genre{
+  margin-top: 1px;
+  margin-bottom: 1px; 
 }

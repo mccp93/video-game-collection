@@ -2,11 +2,38 @@ const express = require('express');
 const router = express.Router();
 const Firebase = require('firebase');
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: 'public/images/uploads/' });
 
 // GET - Home Page
 router.get('/', function (req, res, next) {
-	res.render('games/index');
+	// Gets a reference to the database and table.
+	var gameReference = Firebase.database().ref('games');
+
+	// Iterates through a snapshot of the chosen database table then grabs the key/val for the view.
+	gameReference.once('value').then(function (snapshot) {
+		var games = [];
+		var jsonData = snapshot.val();
+
+		for (var key in jsonData) {
+			if (jsonData.hasOwnProperty(key)) {
+				games.push(
+					{ 
+						id: key, 
+						game_name: jsonData[key].game_name,
+						game_developer: jsonData[key].game_developer,
+						game_publisher: jsonData[key].game_publisher,
+						genre: jsonData[key].genre,
+						rating: jsonData[key].rating,
+						review: jsonData[key].review,
+						year_released: jsonData[key].year_released,
+						cover: jsonData[key].cover
+					}
+				);
+			}
+		}
+
+		res.render('games/index', { games: games });
+	});
 });
 
 // GET - Add Game

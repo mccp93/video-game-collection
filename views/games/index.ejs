@@ -1,3 +1,34 @@
 <% include ../partials/header %>
-    <h3> Games <a href="/games/add" class="btn btn-success pull-right">Add Game</a></h3>
+    <h2> Games <a href="/games/add" class="btn btn-default pull-right">Add Games</a></h2>
+
+    <div class="row">
+        <% for(var i = 0; i < games.length; i++) {%>
+            <div class="well">
+                <div class="wrapper row">
+                    <div class="col-md-4">
+                        <div class="preview-pic tab-content">
+                            <div><img  class="game-cover" src="/images/uploads/<%= games[i].cover %>"/></div>
+                        </div>
+                    </div>
+                    <div class="details col-md-8">
+                        <div class="game-name"><h3> <%= games[i].game_name %> </h3> </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <% for(var x = 0; x < games[i].rating; x++) {%>
+                                    <span class="glyphicon glyphicon-star"> </span>
+                                <% } %>
+                            </div>
+                        </div>
+                        <br>
+                        <span class="game-publisher"> <strong> <%= games[i].game_publisher %> </strong> / <%= games[i].game_developer %> </span>
+                        <br>
+                        <h5 class="game-genre"> <%= games[i].year_released %> / <%= games[i].genre %> </h5>
+                        <hr class="hr-pad"/>
+                        <p class="game-review"> <%= games[i].review %></p>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
 <% include ../partials/footer %>
