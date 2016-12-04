@@ -16,9 +16,25 @@ h3{
   margin-bottom: 14px;
 }
 
+.glyphicon-star{
+  color: red;
+}
+
+.glyphicon-star-empty{
+  color: red;
+
+}
+
 .game-cover{
   height: 292px;
   width: 237px;
+  border: 2px black solid;
+}
+
+.game-cover:hover{
+  opacity: 0.8;
+  cursor: pointer;
+  border: 2px black solid;
 }
 
 h2{
@@ -26,13 +42,18 @@ h2{
   margin-bottom: 20px;
 }
 
-.game-header{
-  margin-bottom: 5px;
-  margin-top: 0px;
+.info-label{
+  border-radius: 0px;
+  background-color: red;
+  margin-right: 10px;
 }
 
-.game-developer{
-  font-size: 12px;
+.info-label:hover{
+  opacity: 0.7;
+}
+
+.game-info{
+  line-height: 25px;
 }
 
 .rating{

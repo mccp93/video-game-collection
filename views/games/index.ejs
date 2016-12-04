@@ -7,7 +7,7 @@
                 <div class="wrapper row">
                     <div class="col-md-4">
                         <div class="preview-pic tab-content">
-                            <div><img  class="game-cover" src="/images/uploads/<%= games[i].cover %>"/></div>
+                            <div><img class="game-cover" src="/images/uploads/<%= games[i].cover %>"/></div>
                         </div>
                     </div>
                     <div class="details col-md-8">
@@ -17,12 +17,17 @@
                                 <% for(var x = 0; x < games[i].rating; x++) {%>
                                     <span class="glyphicon glyphicon-star"> </span>
                                 <% } %>
+
+                                <% for(var y = 0; y < (5 - games[i].rating); y++) {%>
+                                    <span class="glyphicon glyphicon-star-empty"> </span>
+                                <% } %>
                             </div>
                         </div>
                         <br>
-                        <span class="game-publisher"> <strong> <%= games[i].game_publisher %> </strong> / <%= games[i].game_developer %> </span>
-                        <br>
-                        <h5 class="game-genre"> <%= games[i].year_released %> / <%= games[i].genre %> </h5>
+                        <div class="game-info">
+                            <span class="info-label label label-info"> <%= games[i].game_publisher %> </span> <span class="info-label label label-info"> <%= games[i].game_developer %> </span>
+                            <span class="info-label label label-info"> <%= games[i].genre %>  </span> <span class="info-label label label-info"> <%= games[i].year_released %>  </span>
+                        </div>
                         <hr class="hr-pad"/>
                         <p class="game-review"> <%= games[i].review %></p>
                     </div>
