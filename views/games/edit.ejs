@@ -1,0 +1,57 @@
+<% include ../partials/header %>
+    <h3> Edit </h3>
+    <form enctype="multipart/form-data" method="post" action="/games/edit/<%= id %>">
+        <div class="form-group">
+            <label> Game Name </label>
+            <input type="text" class="form-control" name="game_name" value= "<%= game.game_name %>">
+        </div>
+        <div class="form-group">
+            <label> Developer </label>
+            <input type="text" class="form-control" name="game_developer" value= "<%= game.game_developer %>">
+        </div>
+        <div class="form-group">
+            <label> Game Publisher </label>
+            <input type="text" class="form-control" name="game_publisher" value= "<%= game.game_publisher %>"
+        </div>
+        <div class="form-group">
+            <label> Year Released </label>
+            <input type="text" class="form-control" name="year_released" value= "<%= game.year_released %>">
+        </div>
+        <div class="form-group">
+            <label> Genre </label>
+            <select name="genre" class="form-control">
+                <% for(var i = 0; i < genres.length; i++) {%>
+                    <option value=" <%= genres[i].name %> " 
+                        <% if(game.genre == genres[i].name) { %>
+                            selected
+                        <% } %> >
+                        <%= genres[i].name %> </option>
+                <% } %>
+            </select>
+        </div>
+        <div class="form-group">
+            <label> Review </label>
+            <textarea class="form-control" name="review"> <%= game.review %> </textarea>
+        </div>
+        <div class="form-group">
+            <label> Rating </label>
+            <select class="form-control" name="rating">
+                <% for(var x = 1; x < 6; x++) { %>
+                    <option value=" <%= x %> " 
+                    <% if(game.rating == x) { %>
+                        selected
+                    <% } %>> 
+                    <%= x %> </option>
+                <% } %>
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label> Game Cover </label>
+            <input type="file" class="form-control" name="cover">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+        <a class="btn btn-primary" href="/games">Close</a>
+    </form>
+
+    <% include ../partials/footer %>
