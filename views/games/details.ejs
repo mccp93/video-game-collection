@@ -1,0 +1,38 @@
+<% include ../partials/header %>
+<div class="well">
+    <div class="wrapper row" style="position: relative">
+        <div class="col-md-4">
+            <div class="preview-pic tab-content">
+                <div><a href="/games/details/<%= game.id %>"><img class="game-cover-big" src="/images/uploads/<%= game.cover %>"/></a></div>
+            </div>
+        </div>
+        <div class="details col-md-8">
+            <div class="game-name">
+                <h3>
+                    <%= game.game_name %>
+                </h3>
+            </div>
+            <div class="game-data">
+                <span class="info-label label label-info"> <%= game.game_publisher %> </span> <span class="info-label label label-info"> <%= game.game_developer %> </span>
+                <span class="info-label label label-info"> <%= game.genre %>  </span> <span class="info-label label label-info"> <%= game.year_released %>  </span>
+                <div class="stars">
+                    <% for(var x = 0; x < game.rating; x++) {%>
+                        <span class="glyphicon glyphicon-star"> </span>
+                        <% } %>
+
+                    <% for(var y = 0; y < (5 - game.rating); y++) {%>
+                        <span class="glyphicon glyphicon-star-empty"> </span>
+                    <% } %>
+                </div>
+            </div>
+            <hr class="hr-pad" />
+            <p class="game-review">
+                <%= game.review %>
+            </p>
+            <hr>
+            <a href="/games/delete/<%= id %>" data-id="<%= id %>" class="btn btn-xs btn-primary delete-btn" style="float: right"> Delete </a>
+            <a href="/games/edit/<%= id %>" class="btn btn-xs btn-default edit-btn" style="float: right"> Edit </a>
+        </div>
+    </div>
+</div>
+    <% include ../partials/footer %>

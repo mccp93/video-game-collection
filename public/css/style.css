@@ -25,16 +25,52 @@ h3{
 
 }
 
-.game-cover{
-  height: 292px;
-  width: 237px;
+.edit-btn{
+  margin-right: 5px;
+}
+
+.stars{
+  float: right;
+}
+
+.game-data{
+  margin-bottom: 10px;
+}
+
+.game-image{
   border: 2px black solid;
+  height: 175px;
+  width: 140px;
+}
+
+.game-block{
+  margin-bottom: 5px;
+}
+
+.game-info{
+  display: none;
+}
+
+.game-cover:hover + .game-info {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  z-index: 10;
+}
+
+.game-cover-big{
+  border: 2px black solid;
+  display: block;
+  height: 300px;
+  width: 250px;
 }
 
 .game-cover:hover{
   opacity: 0.8;
   cursor: pointer;
-  border: 2px black solid;
 }
 
 h2{
@@ -49,16 +85,15 @@ h2{
 }
 
 .info-label:hover{
-  opacity: 0.7;
+  cursor: pointer;
+  text-decoration: underline;
+  color: ghostwhite;
 }
 
 .game-info{
   line-height: 25px;
 }
 
-.rating{
-  float: right;
-}
 
 .game-name{
   display: inline-block;

@@ -1,36 +1,14 @@
 <% include ../partials/header %>
-    <h2> Games <a href="/games/add" class="btn btn-default pull-right">Add Games</a></h2>
+    <h2> My Games <a href="/games/add" class="btn btn-default pull-right">Add Games</a></h2>
 
     <div class="row">
         <% for(var i = 0; i < games.length; i++) {%>
-            <div class="well">
-                <div class="wrapper row">
-                    <div class="col-md-4">
-                        <div class="preview-pic tab-content">
-                            <div><img class="game-cover" src="/images/uploads/<%= games[i].cover %>"/></div>
-                        </div>
-                    </div>
-                    <div class="details col-md-8">
-                        <div class="game-name"><h3> <%= games[i].game_name %> </h3> </div>
-                        <div class="rating">
-                            <div class="stars">
-                                <% for(var x = 0; x < games[i].rating; x++) {%>
-                                    <span class="glyphicon glyphicon-star"> </span>
-                                <% } %>
-
-                                <% for(var y = 0; y < (5 - games[i].rating); y++) {%>
-                                    <span class="glyphicon glyphicon-star-empty"> </span>
-                                <% } %>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="game-info">
-                            <span class="info-label label label-info"> <%= games[i].game_publisher %> </span> <span class="info-label label label-info"> <%= games[i].game_developer %> </span>
-                            <span class="info-label label label-info"> <%= games[i].genre %>  </span> <span class="info-label label label-info"> <%= games[i].year_released %>  </span>
-                        </div>
-                        <hr class="hr-pad"/>
-                        <p class="game-review"> <%= games[i].review %></p>
-                    </div>
+            <div class="col-md-2 game-block">
+                <div class="game-cover">
+                    <a href="/games/details/<%= games[i].id %>"><img class="game-image" src="/images/uploads/<%= games[i].cover %>"/></a>
+                </div>
+                <div class="game-info">
+                    <span class="label label-default"> <%= games[i].game_name %> </span>
                 </div>
             </div>
         <% } %>
