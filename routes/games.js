@@ -123,7 +123,6 @@ router.get('/edit/:id', function(req, res, next){
 	});
 });
 
-
 // POST - Edit game
 router.post('/edit/:id', upload.single('cover'), function(req, res, next){
 	var id = req.params.id;
@@ -150,5 +149,15 @@ router.post('/edit/:id', upload.single('cover'), function(req, res, next){
 	res.redirect("/games/details/" + id);;
 });
 
+// DELETE - Delete Game
+router.delete('/delete/:id', function (req, res, next) {
+	var id = req.params.id;
+
+	var gameReference = Firebase.database().ref('games/' + id);
+	gameReference.remove();
+
+	req.flash('success_msg', 'Game has been deleted.')
+	res.sendStatus(200);
+});
 
 module.exports = router;
