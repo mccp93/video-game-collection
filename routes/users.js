@@ -54,5 +54,52 @@ router.get('/login', function(req, res, next) {
   	res.render('users/login');
 });
 
+// GET - Logout
+router.get('/logout', function(req, res, next){
+	Firebase.auth().signOut()
+		.then(
+			function(){
+				req.flash("success_msg", "You are now logged out.");
+				res.redirect('/users/login');
+			}, 
+			function(error){
+				req.flash("error_msg", "Error logging out, please try again.");
+				res.redirect("/users/login");
+			}
+		)
+
+});
+
+// POST - Login
+router.post('/login', function(req, res, next) {
+
+	var email = req.body.email;
+	var password = req.body.password;
+
+	req.checkBody("email", "Email or username is required.").notEmpty();
+	req.checkBody("email", "Email must be valid.").isEmail();
+	req.checkBody("password", "Password is required.").notEmpty();
+
+	var errors = req.validationErrors();
+
+	if(errors){
+		res.render("/user/login", {errors:errors});
+	}else{
+		Firebase.auth().signInWithEmailAndPassword(email, password)
+			.then(
+				function(data){
+					console.log("LOGGED IN WITH UID: " + data.uid);
+					req.flash("success_msg", "You are now logged in.");
+					res.redirect('/games');
+				},
+				function(error){
+					console.log("ERROR WHILE LOGGING IN! :" + error);
+					req.flash("error_msg", "Login failed - wrong username or password.");
+					res.redirect("/users/login");
+				}
+			)
+	}
+});
+
 
 module.exports = router;
