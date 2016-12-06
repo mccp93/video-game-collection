@@ -14,7 +14,9 @@ router.get('/', function (req, res, next) {
 
 		for (var key in jsonData) {
 			if (jsonData.hasOwnProperty(key)) {
-				genres.push({ id: key, name: jsonData[key].name });
+				if(jsonData[key].uid == Firebase.auth().currentUser.uid){
+					genres.push({ id: key, name: jsonData[key].name });
+				}
 			}
 		}
 
@@ -30,7 +32,8 @@ router.get('/add', function (req, res, next) {
 // POST - Add Genre
 router.post('/add', function (req, res, next) {
 	var genre = {
-		name: req.body.name
+		name: req.body.name,
+		uid: Firebase.auth().currentUser.uid
 	}
 
 	var genreReference = Firebase.database().ref('genres');

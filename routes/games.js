@@ -26,19 +26,21 @@ router.get('/', function (req, res, next) {
 
 		for (var key in jsonData) {
 			if (jsonData.hasOwnProperty(key)) {
-				games.push(
-					{ 
-						id: key, 
-						game_name: jsonData[key].game_name,
-						game_developer: jsonData[key].game_developer,
-						game_publisher: jsonData[key].game_publisher,
-						genre: jsonData[key].genre,
-						rating: jsonData[key].rating,
-						review: jsonData[key].review,
-						year_released: jsonData[key].year_released,
-						cover: jsonData[key].cover
-					}
-				);
+				if(jsonData[key].uid == Firebase.auth().currentUser.uid){
+					games.push(
+						{ 
+							id: key, 
+							game_name: jsonData[key].game_name,
+							game_developer: jsonData[key].game_developer,
+							game_publisher: jsonData[key].game_publisher,
+							genre: jsonData[key].genre,
+							rating: jsonData[key].rating,
+							review: jsonData[key].review,
+							year_released: jsonData[key].year_released,
+							cover: jsonData[key].cover
+						}
+					);
+				}
 			}
 		}
 
@@ -83,7 +85,8 @@ router.post('/add', upload.single('cover'), function (req, res, next) {
 		genre : req.body.genre,
 		review : req.body.review,
 		rating : req.body.rating,
-		cover : cover
+		cover : cover,
+		uid: Firebase.auth().currentUser.uid
 	}
 
 	var gameReference = Firebase.database().ref('games');

@@ -40,7 +40,7 @@ router.post('/register', function(req, res, next) {
 				userRef.push().set(user);				
 
 				req.flash("success_msg", "You are now registered and may login.");
-				res.redirect('/users/login');
+				res.redirect('/games');
 			},
 			function(error) {
 				console.log("ERROR WHILE REGISTERING USER: "  + error);
@@ -51,7 +51,11 @@ router.post('/register', function(req, res, next) {
 
 // GET - Login
 router.get('/login', function(req, res, next) {
-  	res.render('users/login');
+	if(Firebase.auth().currentUser){
+		res.redirect('/games');	
+	}else{
+  		res.render('users/login');
+	}
 });
 
 // GET - Logout
