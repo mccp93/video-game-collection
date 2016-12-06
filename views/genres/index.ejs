@@ -1,6 +1,10 @@
 <% include ../partials/header %>
-    <h3> Genres <a href="/genres/add" class="btn btn-default pull-right">Add Genre</a></h3>
-    
+    <h3> Genres 
+        <% if(authdata != null) { %>
+        <a href="/genres/add" class="btn btn-default pull-right">Add Genre</a>
+        <% } %> 
+    </h3>
+        
     <table class="table table-striped">
         <thead>
             <tr>
@@ -11,9 +15,11 @@
         <tbody>
             <% for(var i = 0; i < genres.length; i++) { %>
                 <tr>
-                    <td> <%= genres[i].name %> </td>
-                    <td> <a href="/genres/edit/<%= genres[i].id %>" class="btn btn-xs btn-default">Edit</a></td>
-                    <td> <a href="/genres/delete/<%= genres[i].id %>" data-id="<%= genres[i].id %>" class="btn btn-xs btn-primary delete-genre">Delete</a></td>
+                    <td  <% if(authdata == null) { %> style="text-align: center;" <% } %>> <%= genres[i].name %> </td>
+                    <% if(authdata != null) { %>
+                        <td> <a href="/genres/edit/<%= genres[i].id %>" class="btn btn-xs btn-default">Edit</a></td>
+                        <td> <a href="/genres/delete/<%= genres[i].id %>" data-id="<%= genres[i].id %>" class="btn btn-xs btn-primary delete-genre">Delete</a></td>
+                    <% } %>
                 </tr>
             <% } %>
         </tbody>

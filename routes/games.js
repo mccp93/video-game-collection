@@ -4,6 +4,16 @@ const Firebase = require('firebase');
 const multer = require('multer');
 const upload = multer({ dest: 'public/images/uploads/' });
 
+
+// Auth check.
+router.get('*', function(req, res, next){
+	if(Firebase.auth().currentUser == null){
+		req.flash("error_msg", "You must be logged in to view the games page.");
+		return res.redirect('/users/login');
+	}
+	next();
+});
+
 // GET - Home Page
 router.get('/', function (req, res, next) {
 	// Gets a reference to the database and table.

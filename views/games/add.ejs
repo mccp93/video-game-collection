@@ -21,7 +21,7 @@
             <label> Genre </label>
             <select name="genre" class="form-control">
                 <% for(var i = 0; i < genres.length; i++) {%>
-                    <option value="<% genres[i].name %>"> 
+                    <option value="<%= genres[i].name %>"> 
                         <%= genres[i].name %>
                     </option>
                 <% } %>
@@ -46,7 +46,7 @@
             <input type="file" class="form-control" name="cover">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
-        <a class="btn btn-danger" href="/games">Close</a>
+        <a class="btn btn-primary" href="/games">Close</a>
     </form>
 
     <% include ../partials/footer %>

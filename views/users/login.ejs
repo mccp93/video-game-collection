@@ -1,14 +1,17 @@
 <% include ../partials/header %>
-    <h3> Login </h3>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sodales, diam a volutpat convallis, arcu diam gravida magna,
-        eu aliquet quam ligula eu leo. Nullam quis vulputate lorem. Ut eget ultricies ex. Mauris id eleifend enim. Integer
-        faucibus consectetur eros, vel posuere massa aliquet vel. Integer sed mollis ipsum, at pharetra metus. Maecenas quis
-        mattis augue. Suspendisse rutrum non ipsum vitae imperdiet. Nullam quis nibh id ante lobortis mattis a a nisi. Nulla
-        molestie ligula dolor, sit amet tincidunt turpis sagittis ut. Nam interdum cursus porttitor. Morbi eu mi gravida,
-        convallis est quis, dictum eros. Praesent rhoncus erat aliquam sagittis dignissim. Nulla facilisi. Maecenas pharetra
-        libero lacus, et sagittis neque tristique eget. Maecenas ut rutrum enim. Mauris lectus elit, lacinia at porttitor
-        ac, cursus vitae odio. Morbi dignissim sit amet metus ullamcorper euismod. Aliquam at arcu lectus. Duis ac purus
-        sagittis, commodo purus non, elementum lorem.
-    </p>
+    <div class="well">
+        <h3> Login </h3>
+        <hr>
+        <form method="post" action="/users/login">
+            <div class="form-group">
+                <label> Email </label>
+                <input type="email" class="form-control" name="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label> Password </label>
+                <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+            <button type="submit" style="width: 100%;" class="btn btn-default btn-sm"> Submit </button>
+        </form> 
+    </div>
 <% include ../partials/footer %>

@@ -11,7 +11,6 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-    
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
                     aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
@@ -23,16 +22,32 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse navbar-right">
                 <ul class="nav navbar-nav">
+                    <% if(authdata == null) { %>
                     <li class="active"><a href="/users/register">Register</a></li>
                     <li><a href="/users/login">Login</a></li>
+                    <% } else { %>
+                    <li><a href="/users/logout">Logout</a></li>
+                    <% } %>
                 </ul>
             </div>
         </div>
     </nav>
 
     <div class="container">
+        <% if(authdata == null) { %>
+            <div class="row">
+                <div class="col-md-12">
+                    <% if(page == '/'){ %>
+                        <a href="/games"><img class="jumbo" src="/images/jumbo.png"> </a>
+                    <% } %>
+                </div>
+            </div>
+        <% } else { %>
         <div class="row">
             <div class="col-md-3">
+                <% if(authdata != null) { %>
+                    <p class="well"> Hello, <strong> <%= user.username %>! </strong> </p>
+                <% } %>
                 <ul class="list-group">
                     <li class="list-group-item"><a href="/games">Games</a></li>
                     <li class="list-group-item"><a href="/genres">Genres</a></li>
@@ -49,4 +64,4 @@
                         <%= error_msg %>
                     </div>
                 <% } %>
-
+        <% } %>

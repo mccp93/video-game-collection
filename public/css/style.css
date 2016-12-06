@@ -5,6 +5,18 @@
   }
 }
 
+.jumbo{
+  height: 75%;
+  width: 75%;
+  display: block;
+  margin: auto;
+}
+
+.bird{
+  height: 11px;
+  width: 14px;
+}
+
 h3{
   padding: 0;
   padding-bottom: 2px;

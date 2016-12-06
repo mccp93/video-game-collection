@@ -1,6 +1,9 @@
 <% include ../partials/header %>
-    <h2> My Games <a href="/games/add" class="btn btn-default pull-right">Add Games</a></h2>
-
+    <h2> Games 
+        <% if(authdata != null) { %>
+            <a href="/games/add" class="btn btn-default pull-right">Add Games</a>
+        <% } %>
+    </h2>
     <div class="row">
         <% for(var i = 0; i < games.length; i++) {%>
             <div class="col-md-2 game-block">
